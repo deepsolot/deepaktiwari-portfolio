@@ -62,6 +62,11 @@ def sitemap_xml():
     return Response(xml_content, mimetype="application/xml")
 
 
+@app.route("/google323487b5afd163b8.html")
+def google_verification():
+    return Response("google-site-verification: google323487b5afd163b8.html", mimetype="text/html")
+
+
 @app.route("/api/leads", methods=["GET"])
 def get_leads():
     leads = load_leads()
