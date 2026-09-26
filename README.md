@@ -1,4 +1,4 @@
-# 🚩 KashiBiz Lead Finder & Deepak Kumar Tiwari Portfolio Suite
+# 🚩 Deepak Tiwari Portfolio & KashiBiz Lead Studio Suite
 
 A dual-purpose platform built specifically for **Deepak Kumar Tiwari** (Full-Stack Software Developer, UI/UX Designer & Freelancer):
 1. **Developer & Designer Portfolio**: A luxury, dynamic, motion-rich personal website showcasing live client projects, client reviews, Next.js technical advantages, and 1-click WhatsApp inquiry booking.
@@ -8,9 +8,9 @@ A dual-purpose platform built specifically for **Deepak Kumar Tiwari** (Full-Sta
 
 ## 🌐 Live Production & Repository Links
 
-- 🚀 **Live Production (Vercel)**: **[https://finding-one.vercel.app/portfolio](https://finding-one.vercel.app/portfolio)**
-- 🚩 **Live Lead Studio (Vercel)**: **[https://finding-one.vercel.app](https://finding-one.vercel.app)**
-- 💻 **GitHub Repository**: **[https://github.com/deepsolot/kashibiz-portfolio](https://github.com/deepsolot/kashibiz-portfolio)**
+- 🌟 **Official Portfolio (Vercel)**: **[https://deepaktiwari-portfolio.vercel.app/portfolio](https://deepaktiwari-portfolio.vercel.app/portfolio)**
+- 🚩 **Live Lead Studio (Vercel)**: **[https://deepaktiwari-portfolio.vercel.app](https://deepaktiwari-portfolio.vercel.app)**
+- 💻 **GitHub Repository**: **[https://github.com/deepsolot/deepaktiwari-portfolio](https://github.com/deepsolot/deepaktiwari-portfolio)**
 - 📄 **Standalone Single-File Portfolio**: [`portfolio_standalone.html`](portfolio_standalone.html)
 
 ---
@@ -26,14 +26,14 @@ A dual-purpose platform built specifically for **Deepak Kumar Tiwari** (Full-Sta
   - 🎵 **ARL Music Production** (Cinematic Studio & Audio Platform): [https://arlmusicproduction.com/](https://arlmusicproduction.com/)
   - 🌐 **Dharohar Banarasi** (Authentic Banarasi Saree & Handloom Store): [https://dharoharbanarasi.com/](https://dharoharbanarasi.com/)
   - 🌐 **New Zen Advocate** (Professional Legal Consultation Portal): [https://newzenadvocate.com/](https://newzenadvocate.com/)
-  - 🚩 **KashiBiz Outreach Studio** (AI Lead Radar & WhatsApp CRM): [https://finding-one.vercel.app](https://finding-one.vercel.app)
+  - 🚩 **KashiBiz Outreach Studio** (AI Lead Radar & WhatsApp CRM): [https://deepaktiwari-portfolio.vercel.app](https://deepaktiwari-portfolio.vercel.app)
 
 ---
 
 ## 🛠️ Running Locally
 
 ```bash
-# Start the local server (Port 5050)
+# Start local server (Port 5050)
 .venv/bin/python app.py
 
 # Local URLs:
