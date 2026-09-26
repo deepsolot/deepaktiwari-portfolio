@@ -1,90 +1,98 @@
 // ==========================================================================
-// Deepak Kumar Tiwari Portfolio • Dynamic Interactive Engine
-// Constellation Canvas + 3D Glass Tilt + Interactive WhatsApp Engine
+// Deepak Kumar Tiwari Portfolio • High-Performance Dynamic Engine
+// Silky 60fps/120fps Particle Constellation + Smooth Spring 3D Glass Tilt
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  initConstellationCanvas();
-  init3DCardTilt();
+  initUltraSmoothCanvas();
+  initSpring3DTilt();
+  initSmoothScroll();
 });
 
 // --------------------------------------------------------------------------
-// 1. Dynamic Interactive Particle Constellation Canvas
+// 1. Ultra-Smooth 60fps / 120fps Marigold Particle Constellation
 // --------------------------------------------------------------------------
-function initConstellationCanvas() {
+function initUltraSmoothCanvas() {
   const canvas = document.getElementById('dynamic-bg-canvas');
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { alpha: true });
 
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
 
+  let resizeTimer = null;
   window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }, 150);
   });
 
-  const mouse = { x: null, y: null, radius: 150 };
+  const mouse = { x: -1000, y: -1000, active: false };
 
   window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
-  });
+    mouse.active = true;
+  }, { passive: true });
 
-  window.addEventListener('mouseout', () => {
-    mouse.x = null;
-    mouse.y = null;
-  });
+  window.addEventListener('mouseleave', () => {
+    mouse.x = -1000;
+    mouse.y = -1000;
+    mouse.active = false;
+  }, { passive: true });
 
-  // Particle configuration
-  const particleCount = Math.floor(Math.min(width, 1400) / 16);
+  // 36 Optimized particles with Sacred Marigold & Saffron Cyan palette
+  const particleCount = Math.min(Math.floor(width / 35), 40);
   const particles = [];
+
+  const marigoldColors = [
+    'rgba(251, 191, 36, ',  // Marigold Gold #fbbf24
+    'rgba(245, 158, 11, ',  // Rich Amber Marigold #f59e0b
+    'rgba(234, 88, 12, ',   // Deep Saffron Orange #ea580c
+    'rgba(56, 189, 248, '   // Electric Cyan accent
+  ];
 
   class Particle {
     constructor() {
       this.x = Math.random() * width;
       this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.7;
-      this.vy = (Math.random() - 0.5) * 0.7;
-      this.radius = Math.random() * 1.8 + 0.8;
-      // Palette: Cyan, Gold, Purple
-      const colors = [
-        'rgba(56, 189, 248, ',   // Cyan
-        'rgba(245, 158, 11, ',   // Gold
-        'rgba(168, 85, 247, ',   // Purple
-        'rgba(236, 72, 153, '    // Pink
-      ];
-      this.baseColor = colors[Math.floor(Math.random() * colors.length)];
-      this.alpha = Math.random() * 0.5 + 0.3;
+      this.vx = (Math.random() - 0.5) * 0.6;
+      this.vy = (Math.random() - 0.5) * 0.6;
+      this.radius = Math.random() * 1.8 + 1.2;
+      this.color = marigoldColors[Math.floor(Math.random() * marigoldColors.length)];
+      this.alpha = Math.random() * 0.45 + 0.35;
     }
 
     update() {
       this.x += this.vx;
       this.y += this.vy;
 
-      // Bounce off boundaries
-      if (this.x < 0 || this.x > width) this.vx *= -1;
-      if (this.y < 0 || this.y > height) this.vy *= -1;
+      if (this.x < 0) this.x = width;
+      else if (this.x > width) this.x = 0;
 
-      // Gravitate toward cursor if close
-      if (mouse.x !== null && mouse.y !== null) {
+      if (this.y < 0) this.y = height;
+      else if (this.y > height) this.y = 0;
+
+      // Mouse gentle repulsion / pull without jank
+      if (mouse.active) {
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < mouse.radius) {
-          const force = (mouse.radius - dist) / mouse.radius;
-          this.x += (dx / dist) * force * 1.8;
-          this.y += (dy / dist) * force * 1.8;
+        const distSq = dx * dx + dy * dy;
+        if (distSq < 22500) { // 150px radius
+          const dist = Math.sqrt(distSq);
+          const force = (150 - dist) / 150;
+          this.x += (dx / dist) * force * 1.2;
+          this.y += (dy / dist) * force * 1.2;
         }
       }
     }
 
     draw() {
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = this.baseColor + this.alpha + ')';
-      ctx.shadowBlur = 10;
-      ctx.shadowColor = this.baseColor + '0.8)';
+      ctx.arc(this.x, this.y, this.radius, 0, 6.283);
+      ctx.fillStyle = this.color + this.alpha + ')';
       ctx.fill();
     }
   }
@@ -93,60 +101,92 @@ function initConstellationCanvas() {
     particles.push(new Particle());
   }
 
+  // Optimized render loop with squared distance (no Math.sqrt for lines)
   function render() {
     ctx.clearRect(0, 0, width, height);
 
-    // Draw connecting lines between close particles
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+    const maxDistSq = 120 * 120; // 14400
 
-        if (dist < 110) {
-          const lineAlpha = (1 - dist / 110) * 0.22;
+    for (let i = 0; i < particles.length; i++) {
+      const p1 = particles[i];
+      p1.update();
+      p1.draw();
+
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j];
+        const dx = p1.x - p2.x;
+        const dy = p1.y - p2.y;
+        const distSq = dx * dx + dy * dy;
+
+        if (distSq < maxDistSq) {
+          const alpha = (1 - distSq / maxDistSq) * 0.18;
           ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(148, 163, 184, ${lineAlpha})`;
-          ctx.lineWidth = 0.8;
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = `rgba(251, 191, 36, ${alpha})`;
+          ctx.lineWidth = 0.75;
           ctx.stroke();
         }
       }
 
       // Connect to mouse cursor
-      if (mouse.x !== null && mouse.y !== null) {
-        const dx = particles[i].x - mouse.x;
-        const dy = particles[i].y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < mouse.radius) {
-          const lineAlpha = (1 - dist / mouse.radius) * 0.35;
+      if (mouse.active) {
+        const dx = p1.x - mouse.x;
+        const dy = p1.y - mouse.y;
+        const distSq = dx * dx + dy * dy;
+        if (distSq < maxDistSq) {
+          const alpha = (1 - distSq / maxDistSq) * 0.28;
           ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.moveTo(p1.x, p1.y);
           ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(56, 189, 248, ${lineAlpha})`;
-          ctx.lineWidth = 1;
+          ctx.strokeStyle = `rgba(245, 158, 11, ${alpha})`;
+          ctx.lineWidth = 0.9;
           ctx.stroke();
         }
       }
-
-      particles[i].update();
-      particles[i].draw();
     }
 
     requestAnimationFrame(render);
   }
 
-  render();
+  requestAnimationFrame(render);
 }
 
 // --------------------------------------------------------------------------
-// 2. Dynamic 3D Card Tilt with Specular Reflection
+// 2. High-Performance Spring 3D Glass Tilt (Decoupled with rAF)
 // --------------------------------------------------------------------------
-function init3DCardTilt() {
+function initSpring3DTilt() {
   const cards = document.querySelectorAll('.tilt-target');
+  if (!cards.length) return;
 
   cards.forEach((card) => {
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let isHovered = false;
+    let animFrame = null;
+
+    function springLoop() {
+      // Smooth lerp interpolation
+      currentX += (targetX - currentX) * 0.14;
+      currentY += (targetY - currentY) * 0.14;
+
+      card.style.transform = `perspective(1000px) rotateX(${currentX}deg) rotateY(${currentY}deg) translateZ(${isHovered ? 6 : 0}px)`;
+
+      if (isHovered || Math.abs(currentX) > 0.05 || Math.abs(currentY) > 0.05) {
+        animFrame = requestAnimationFrame(springLoop);
+      } else {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+      }
+    }
+
+    card.addEventListener('mouseenter', () => {
+      isHovered = true;
+      cancelAnimationFrame(animFrame);
+      animFrame = requestAnimationFrame(springLoop);
+    });
+
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -155,20 +195,38 @@ function init3DCardTilt() {
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
 
-      const rotateX = ((y - centerY) / centerY) * -6; // max 6 deg
-      const rotateY = ((x - centerX) / centerX) * 6;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.015, 1.015, 1.015)`;
-    });
+      // Gentle, non-jarring tilt (max 5 degrees)
+      targetX = ((y - centerY) / centerY) * -5;
+      targetY = ((x - centerX) / centerX) * 5;
+    }, { passive: true });
 
     card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      isHovered = false;
+      targetX = 0;
+      targetY = 0;
     });
   });
 }
 
 // --------------------------------------------------------------------------
-// 3. Direct WhatsApp Inquiry Generator
+// 3. Smooth Navigation Scroll
+// --------------------------------------------------------------------------
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+}
+
+// --------------------------------------------------------------------------
+// 4. Direct WhatsApp Inquiry Generator
 // --------------------------------------------------------------------------
 function sendPortfolioInquiry(e) {
   e.preventDefault();
