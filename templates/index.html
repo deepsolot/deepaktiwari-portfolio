@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KashiBiz • Varanasi Lead Finder & Automated Outreach Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-icon">
+          <span>🕉️</span>
+        </div>
+        <div>
+          <h1 class="brand-title">KashiBiz <span class="badge-pro">Outreach Pro</span></h1>
+          <p class="brand-subtitle">Varanasi Business Lead Finder & Automated WhatsApp Website Pitcher</p>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <a href="/portfolio" target="_blank" class="btn btn-secondary" style="border-color: rgba(245, 158, 11, 0.4); color: #fbbf24; font-weight: 700;">
+          ✨ My Portfolio Website
+        </a>
+        <a href="/api/export/csv" class="btn btn-secondary">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path></svg>
+          Export CSV / Excel
+        </a>
+        <button class="btn btn-primary" onclick="openAddLeadModal()">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg>
+          Add Business
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <!-- Hero Statistics Bar -->
+    <section class="stats-row">
+      <div class="stat-card">
+        <div class="stat-icon icon-blue">🏢</div>
+        <div class="stat-info">
+          <span class="stat-label">Total Businesses Found</span>
+          <span class="stat-value" id="stat-total">0</span>
+          <span class="stat-sub">Varanasi Registry</span>
+        </div>
+      </div>
+
+      <div class="stat-card highlight-card">
+        <div class="stat-icon icon-orange">🔥</div>
+        <div class="stat-info">
+          <span class="stat-label">High Priority (No Website)</span>
+          <span class="stat-value" id="stat-no-web">0</span>
+          <span class="stat-sub text-warning">Highest Conversion Probability</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon icon-green">💬</div>
+        <div class="stat-info">
+          <span class="stat-label">Pitched on WhatsApp</span>
+          <span class="stat-value" id="stat-contacted">0</span>
+          <span class="stat-sub text-success">Messages Sent</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon icon-purple">🏆</div>
+        <div class="stat-info">
+          <span class="stat-label">Converted Clients</span>
+          <span class="stat-value" id="stat-converted">0</span>
+          <span class="stat-sub">Website Orders Booked</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scanner & Discovery Control Room -->
+    <section class="scanner-section">
+      <div class="section-header">
+        <div>
+          <h2>Varanasi Business Radar (Live Scanner)</h2>
+          <p>Scan real-time businesses in Varanasi across hotels, restaurants, cafes, silk shops, and tour services.</p>
+        </div>
+        <span class="live-pill"><span class="pulse-dot"></span> Live Scraper Engine</span>
+      </div>
+
+      <div class="scanner-box">
+        <div class="form-group">
+          <label>Select Business Industry</label>
+          <select id="scan-category" class="custom-select">
+            {% for cat in categories %}
+            <option value="{{ cat }}">{{ cat }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Varanasi Locality / Ghat / Area</label>
+          <select id="scan-locality" class="custom-select">
+            {% for loc in localities %}
+            <option value="{{ loc }}">{{ loc }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group action-group">
+          <button id="btn-scan" class="btn btn-radar" onclick="triggerScanner()">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"></path></svg>
+            <span id="scan-btn-text">Discover New Leads in Varanasi</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leads Management & Filter Strip -->
+    <section class="leads-section">
+      <div class="filter-bar">
+        <div class="search-input-wrapper">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input type="text" id="filter-search" placeholder="Search business name, area, phone..." oninput="debounceFilter()">
+        </div>
+
+        <div class="filter-controls">
+          <select id="filter-category" class="custom-select-sm" onchange="loadLeads()">
+            <option value="">All Categories</option>
+            {% for cat in categories %}
+            <option value="{{ cat }}">{{ cat }}</option>
+            {% endfor %}
+          </select>
+
+          <select id="filter-locality" class="custom-select-sm" onchange="loadLeads()">
+            <option value="">All Localities</option>
+            {% for loc in localities %}
+            <option value="{{ loc }}">{{ loc }}</option>
+            {% endfor %}
+          </select>
+
+          <select id="filter-status" class="custom-select-sm" onchange="loadLeads()">
+            <option value="">All Outreach Statuses</option>
+            <option value="new">New (Uncontacted)</option>
+            <option value="messaged">Messaged</option>
+            <option value="follow_up">Follow Up</option>
+            <option value="converted">Converted (Won 🎉)</option>
+          </select>
+
+          <label class="toggle-checkbox">
+            <input type="checkbox" id="filter-no-web" onchange="loadLeads()" checked>
+            <span class="toggle-label">🔥 Only No-Website Leads</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Leads Grid Container -->
+      <div class="results-header">
+        <span id="leads-count-text">Showing 0 verified businesses</span>
+        <div class="quick-tips">
+          💡 <strong>Pro Tip:</strong> Businesses with <em>"🚫 NO WEBSITE"</em> are paying heavy OTA / aggregator commissions and convert at 3x higher rate!
+        </div>
+      </div>
+
+      <div class="leads-grid" id="leads-container">
+        <!-- Dynamic Cards Inserted Here via JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Pitch Customizer & WhatsApp Sender Modal -->
+  <div id="pitch-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 id="modal-biz-name">Business Name</h3>
+          <p id="modal-biz-meta" class="modal-sub">Hotels & Stays • Assi Ghat</p>
+        </div>
+        <button class="modal-close-btn" onclick="closePitchModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="pitch-config-bar">
+          <div class="config-item">
+            <label>Template & Language:</label>
+            <div class="lang-pills">
+              <button class="lang-pill active" onclick="switchLanguage('followup')">🌟 Deepak's Follow-up (Discussed)</button>
+              <button class="lang-pill" onclick="switchLanguage('cold_pitch')">🚀 Cold Next.js Pitch</button>
+              <button class="lang-pill" onclick="switchLanguage('hinglish')">💬 Hinglish Direct</button>
+              <button class="lang-pill" onclick="switchLanguage('hindi')">शुद्ध हिंदी</button>
+              <button class="lang-pill" onclick="switchLanguage('english')">English</button>
+            </div>
+          </div>
+          <div class="config-item">
+            <label>Target Phone:</label>
+            <span id="modal-phone-display" class="phone-chip">+91 XXXXXXXXXX</span>
+          </div>
+        </div>
+
+        <div class="message-preview-container">
+          <div class="preview-header">
+            <span>WhatsApp Pitch Preview</span>
+            <button class="btn-copy-sm" onclick="copyModalPitch()">📋 Copy Text</button>
+          </div>
+          <textarea id="modal-pitch-text" class="pitch-textarea" rows="12"></textarea>
+        </div>
+
+        <div class="pitch-strategy-box">
+          <strong>🎯 Sales Angle & Pain Point:</strong>
+          <p id="modal-pain-point">...</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="status-updater">
+          <label>Update Status:</label>
+          <select id="modal-status-select" class="custom-select-sm">
+            <option value="new">New</option>
+            <option value="messaged" selected>Messaged (Pitched)</option>
+            <option value="follow_up">Needs Follow Up</option>
+            <option value="converted">Deal Won (Client!)</option>
+          </select>
+        </div>
+        <div class="modal-buttons">
+          <button class="btn btn-secondary" onclick="closePitchModal()">Cancel</button>
+          <button id="btn-open-wa" class="btn btn-whatsapp" onclick="launchWhatsApp()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.969.586 1.761.88 2.796.88 3.179 0 5.767-2.587 5.767-5.766.001-3.187-2.575-5.766-5.767-5.766zm9.969 5.766c0 5.518-4.482 10-10 10-1.745 0-3.385-.453-4.819-1.246l-5.181 1.308 1.332-4.862c-.911-1.503-1.432-3.268-1.432-5.2 0-5.518 4.482-10 10-10 5.518 0 10 4.482 10 10z"/></svg>
+            Send WhatsApp Message
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Lead Modal -->
+  <div id="add-lead-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3>Add Business in Varanasi</h3>
+          <p class="modal-sub">Add any hotel, restaurant, or shop you discovered</p>
+        </div>
+        <button class="modal-close-btn" onclick="closeAddLeadModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="add-lead-form" onsubmit="submitNewLead(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Business Name *</label>
+              <input type="text" id="add-name" required placeholder="e.g. Ganga Kashi Heritage Hotel">
+            </div>
+            <div class="form-group">
+              <label>Phone Number (WhatsApp) *</label>
+              <input type="text" id="add-phone" required placeholder="e.g. +91 9839XXXXXX">
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <select id="add-category" class="custom-select">
+                {% for cat in categories %}
+                <option value="{{ cat }}">{{ cat }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Varanasi Locality</label>
+              <select id="add-locality" class="custom-select">
+                {% for loc in localities %}
+                <option value="{{ loc }}">{{ loc }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label>Address / Landmark</label>
+              <input type="text" id="add-address" placeholder="e.g. Near Dashashwamedh Ghat Steps">
+            </div>
+            <div class="form-group full-width">
+              <label>Does it have an official website?</label>
+              <div class="radio-group">
+                <label><input type="radio" name="has_web" value="false" checked> 🚫 No Website (Hot Lead!)</label>
+                <label><input type="radio" name="has_web" value="true"> 🌐 Has Website</label>
+              </div>
+            </div>
+            <div class="form-group full-width">
+              <label>Notes / Observations</label>
+              <input type="text" id="add-notes" placeholder="e.g. Owner met in person, wants direct room booking">
+            </div>
+          </div>
+          <div class="modal-footer" style="padding-left:0; padding-right:0; margin-top:20px;">
+            <button type="button" class="btn btn-secondary" onclick="closeAddLeadModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Business Lead</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast" class="toast"></div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
