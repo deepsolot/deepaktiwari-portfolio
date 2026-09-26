@@ -32,6 +32,36 @@ def portfolio():
     return render_template("portfolio.html")
 
 
+@app.route("/robots.txt")
+def robots_txt():
+    content = """User-agent: *
+Allow: /
+Allow: /portfolio
+Sitemap: https://deepaktiwari-portfolio.vercel.app/sitemap.xml
+"""
+    return Response(content, mimetype="text/plain")
+
+
+@app.route("/sitemap.xml")
+def sitemap_xml():
+    xml_content = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://deepaktiwari-portfolio.vercel.app/portfolio</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://deepaktiwari-portfolio.vercel.app/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>"""
+    return Response(xml_content, mimetype="application/xml")
+
+
 @app.route("/api/leads", methods=["GET"])
 def get_leads():
     leads = load_leads()
