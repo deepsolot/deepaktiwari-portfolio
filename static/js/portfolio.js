@@ -417,7 +417,7 @@ window.getClientFallbackReply = function(query) {
   }
 
   return {
-    reply: "Namaste! 🙏 I am **Deepak's AI Concierge**.\n\nI can help you with pricing, our 3-year hosting inclusions, 50/50 milestone payments, royal wedding portals, or connecting directly with Deepak on WhatsApp (+91 6204643184). What would you like to know?",
+    reply: "Namaste! 🙏 I am **Pepsi**, Deepak's personal AI Concierge.\n\nI can help you with pricing, our 3-year hosting inclusions, 50/50 milestone payments, royal wedding portals, or connecting directly with Deepak on WhatsApp (+91 6204643184). What would you like to know?",
     suggestions: ["💰 Pricing Packages", "💡 Why ₹15k–₹45k?", "💍 Wedding Portals", "🤝 Budget Negotiation"]
   };
 };

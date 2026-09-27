@@ -434,7 +434,7 @@ We provide daily progress previews via private staging links so you see your web
 
     # Default friendly greeting / general query
     return {
-        "reply": """Namaste! 🙏 I am **Deepak's AI Concierge**.
+        "reply": """Namaste! 🙏 I am **Pepsi**, Deepak Kumar Tiwari's personal AI Concierge.
 
 I can help you with:
 • **Pricing & Rates:** Packages from ₹14,999 to ₹45,000+
@@ -457,7 +457,7 @@ def ai_chat():
     if not user_msg:
         return jsonify({
             "status": "success",
-            "reply": "Namaste! 🙏 How can I assist you with your website, app, or celebration portal today?",
+            "reply": "Namaste! 🙏 I am Pepsi, Deepak's AI Assistant. How can I assist you with your website, app, or celebration portal today?",
             "suggestions": AI_SUGGESTIONS
         })
 
@@ -470,8 +470,9 @@ def ai_chat():
             payload = {
                 "system_instruction": {
                     "parts": [{"text": (
-                        "You are Deepak Kumar Tiwari's professional AI Assistant for his software and web development portfolio in Varanasi, India. "
+                        "You are Pepsi, Deepak Kumar Tiwari's smart and polite personal AI Assistant and Concierge for his software and web development portfolio in Varanasi, India. "
                         "You represent Deepak (+91 6204643184, deepaksolot@gmail.com). "
+                        "Introduce yourself as Pepsi whenever asked who you are. "
                         "Pricing: Starter ₹14,999 (3-5 days), Growth Pro ₹21,000-₹24,999 (3 years hosting + 1 year AMC included), Enterprise ₹34,999+, "
                         "Wedding Portal ₹14,999-₹18,999 (WhatsApp RSVP, GPS maps, UPI Shagun, Blessings Wall), Birthday Portal ₹8,999. "
                         "Explain cost value (3-year hosting included saves ₹12k, 1 year AMC included saves ₹18k, Next.js speed <0.8s, 1-2 clients covers cost). "
