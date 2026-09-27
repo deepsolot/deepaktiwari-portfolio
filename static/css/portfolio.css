@@ -188,11 +188,11 @@ h1, h2, h3, h4 {
 }
 
 .brand-avatar-glass {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-sm);
   background: linear-gradient(135deg, rgba(245, 158, 11, 0.9), rgba(217, 119, 6, 0.9));
-  border: 1px solid rgba(254, 240, 138, 0.5);
+  border: 1.5px solid var(--border-marigold-glass);
   color: #111827;
   display: flex;
   align-items: center;
@@ -201,6 +201,16 @@ h1, h2, h3, h4 {
   font-family: var(--font-heading);
   font-size: 1.15rem;
   box-shadow: 0 0 16px rgba(245, 158, 11, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
 }
 
 .brand-text {
@@ -1507,4 +1517,265 @@ h1, h2, h3, h4 {
   text-align: center;
   font-size: 0.8rem;
   color: var(--text-muted);
+}
+
+/* ==========================================================================
+   ABOUT SECTION & PROFESSIONAL PROFILE
+   ========================================================================== */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 36px;
+  align-items: start;
+  margin-top: 40px;
+}
+
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about-profile-card {
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-marigold-glass);
+  background: var(--bg-glass-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-glass);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-photo-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 290px;
+  margin: 0 auto 24px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(245, 158, 11, 0.25);
+  border: 2px solid var(--border-marigold-glass);
+}
+
+.about-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.about-photo-wrapper:hover .about-photo {
+  transform: scale(1.03);
+}
+
+.about-status-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(4, 7, 13, 0.88);
+  border: 1px solid var(--border-marigold-glass);
+  backdrop-filter: blur(12px);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.about-info-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.about-name {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.about-role-tag {
+  color: var(--marigold-gold);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.about-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin-bottom: 24px;
+}
+
+.about-meta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.about-meta-item strong {
+  color: #fff;
+}
+
+.about-meta-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--marigold-gold);
+  font-size: 0.9rem;
+}
+
+.about-social-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.social-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.social-pill:hover {
+  background: rgba(245, 158, 11, 0.18);
+  border-color: var(--marigold-gold);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Package Card */
+.package-offer-card {
+  padding: 36px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-marigold-glass);
+  background: linear-gradient(145deg, rgba(16, 25, 45, 0.8) 0%, rgba(10, 16, 30, 0.9) 100%);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(245, 158, 11, 0.18);
+  position: relative;
+}
+
+.package-ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(234, 88, 12, 0.2));
+  border: 1px solid var(--border-marigold-glass);
+  color: var(--marigold-light);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+.package-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.package-price-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.package-price-label {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.package-price-amount {
+  font-size: 2.3rem;
+  font-weight: 900;
+  font-family: var(--font-heading);
+  background: var(--marigold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.package-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+.package-features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 24px 0;
+}
+
+@media (max-width: 680px) {
+  .package-features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.package-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: #e2e8f0;
+  line-height: 1.45;
+}
+
+.feature-check {
+  color: #22c55e;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.package-cta-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
