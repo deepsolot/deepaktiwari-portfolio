@@ -420,7 +420,7 @@ function initAIChatAssistant() {
   function getClientFallbackReply(query) {
     const q = query.toLowerCase();
 
-    if (q.includes('why') || q.includes('cost') || q.includes('charge') || q.includes('worth') || q.includes('roi') || q.includes('expensive')) {
+    if ((q.includes('why') && (q.includes('charge') || q.includes('cost') || q.includes('much') || q.includes('price') || q.includes('money'))) || q.includes('roi') || q.includes('expensive') || q.includes('value') || q.includes('justif') || q.includes('mehenga')) {
       return {
         reply: "💡 **Why Our Pricing (₹15k – ₹45k) Saves You Money:**\n\n• **3-Year Hosting & Domain Included:** Saves ₹12,000+ upfront vs cheap sites that charge yearly renewals.\n• **1 Year Free Support & AMC:** ₹18,000 agency value included.\n• **Next.js Sub-Second Speed (<0.8s):** 95+ Google PageSpeed, zero PHP malware.\n• **1–2 Client Deals Payback:** High-converting lead funnels recover your full cost.\n• **100% Code Ownership:** Full GitHub repository handoff.\n• **50/50 Milestone:** 50% advance, 50% only on final approval.",
         suggestions: ["💰 View Packages", "🤝 Discuss Budget", "📞 Talk to Deepak"]

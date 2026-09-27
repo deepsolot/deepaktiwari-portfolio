@@ -275,7 +275,7 @@ def generate_local_ai_response(msg_lower):
     """Smart contextual response engine for client queries."""
     
     # 1. Cost Justification & Why We Charge That Much
-    if any(k in msg_lower for k in ["why so much", "why charge", "why this cost", "cost justification", "expensive", "mehenga", "worth", "value", "roi", "satisf"]):
+    if ("why" in msg_lower and any(w in msg_lower for w in ["charge", "cost", "price", "rate", "much", "money"])) or any(k in msg_lower for k in ["why so much", "why charge", "why this cost", "cost justification", "expensive", "mehenga", "worth", "value", "roi", "satisf"]):
         return {
             "reply": """💡 **Why Our Pricing (₹15,000 – ₹45,000) Saves You Money & Delivers 10x ROI:**
 
