@@ -133,6 +133,10 @@
       </nav>
 
       <div class="header-cta-group">
+        <button class="btn-glass-tool" id="nav-ai-btn" title="Chat with Deepak's AI Assistant" style="background: rgba(245, 158, 11, 0.15); border-color: rgba(251, 191, 36, 0.4); color: #fbbf24;">
+          <span>✨</span>
+          <span>AI Assist</span>
+        </button>
         <a href="/" class="btn-glass-tool" title="Open Varanasi Lead Radar & Outreach Studio">
           <span class="pulsing-radar"></span>
           <span>Lead Studio</span>
@@ -1511,6 +1515,11 @@
         <span>Projects</span>
       </a>
 
+      <button class="dock-btn dock-btn-projects" id="dock-ai-btn" style="border-color: rgba(251, 191, 36, 0.4); color: #fbbf24;">
+        <span>✨</span>
+        <span>AI Assist</span>
+      </button>
+
       <a href="/" class="dock-btn dock-btn-marigold">
         <span class="marigold-gem"></span>
         <span>Lead Studio</span>
@@ -1540,6 +1549,94 @@
       <p>© 2026 Deepak Kumar Tiwari. Built with dynamic glassmorphism and Next.js motion principles.</p>
     </div>
   </footer>
+
+  <!-- Floating AI Assistant Launcher -->
+  <div class="ai-launcher-wrap" id="ai-launcher-wrap">
+    <button class="ai-launcher-btn" id="ai-launcher-btn" aria-label="Open AI Assistant" title="Chat with Deepak's AI Assistant">
+      <span class="ai-launcher-avatar">
+        <img src="/static/images/deepak-kumar-tiwari.jpg" alt="Deepak AI" class="ai-launcher-img">
+        <span class="ai-online-pulse"></span>
+      </span>
+      <span class="ai-launcher-text">
+        <span class="ai-launcher-badge">AI Concierge ✨</span>
+        <span class="ai-launcher-title">Ask Query</span>
+      </span>
+      <span class="ai-sparkle-icon">💬</span>
+    </button>
+  </div>
+
+  <!-- Luxury AI Assistant Chat Window -->
+  <div class="ai-chat-window glass-panel" id="ai-chat-window" style="display: none;">
+    <!-- Chat Header -->
+    <div class="ai-chat-header">
+      <div class="ai-chat-header-info">
+        <div class="ai-chat-avatar-wrap">
+          <img src="/static/images/deepak-kumar-tiwari.jpg" alt="Deepak Kumar Tiwari" class="ai-chat-avatar">
+          <span class="ai-online-dot"></span>
+        </div>
+        <div>
+          <div class="ai-chat-name">Deepak's AI Concierge <span class="ai-bot-badge">24/7 AI</span></div>
+          <div class="ai-chat-status">Software Developer & Next.js Assistant</div>
+        </div>
+      </div>
+      <div class="ai-chat-controls">
+        <button class="ai-chat-ctrl-btn" id="ai-chat-minimize" title="Minimize">─</button>
+        <button class="ai-chat-ctrl-btn" id="ai-chat-close" title="Close">✕</button>
+      </div>
+    </div>
+
+    <!-- Chat Messages Scroll Container -->
+    <div class="ai-chat-body" id="ai-chat-body">
+      <!-- Welcome Message -->
+      <div class="ai-msg ai-msg-bot">
+        <div class="ai-msg-bubble">
+          Namaste! 🙏 I am <strong>Deepak's AI Assistant</strong>.
+          <br><br>
+          I can instantly answer questions about:
+          <ul style="margin: 6px 0 0 16px; padding: 0;">
+            <li>💰 Pricing packages (₹15k – ₹45k)</li>
+            <li>💡 Why our pricing saves you ₹12,000+</li>
+            <li>🤝 Friendly negotiation & 50/50 payment</li>
+            <li>💍 Royal wedding & memory celebration portals</li>
+            <li>⚡ Next.js sub-second speed (&lt;0.8s)</li>
+          </ul>
+          <br>
+          How can I help you today?
+        </div>
+        <span class="ai-msg-time">Just now</span>
+      </div>
+
+      <!-- Quick Suggestion Chips -->
+      <div class="ai-chips-wrap" id="ai-chips-wrap">
+        <button class="ai-chip" data-prompt="What are the website packages and pricing?">💰 Pricing Menu</button>
+        <button class="ai-chip" data-prompt="Why do you charge ₹15k–₹45k? Explain the value.">💡 Why ₹15k–₹45k?</button>
+        <button class="ai-chip" data-prompt="Tell me about Wedding & Memory Portals with RSVP and Shagun QR">💍 Wedding Portals</button>
+        <button class="ai-chip" data-prompt="Can we negotiate the budget or have flexible milestone payments?">🤝 Budget Negotiation</button>
+        <button class="ai-chip" data-prompt="Why should I choose Next.js instead of WordPress?">⚡ Next.js vs WordPress</button>
+        <button class="ai-chip" data-prompt="How can I contact Deepak directly on WhatsApp?">📞 Contact Deepak</button>
+      </div>
+    </div>
+
+    <!-- Typing Indicator -->
+    <div class="ai-typing-indicator" id="ai-typing" style="display: none;">
+      <span></span><span></span><span></span>
+      <span style="font-size: 0.75rem; color: #94a3b8; margin-left: 6px;">Deepak's AI is thinking...</span>
+    </div>
+
+    <!-- Chat Input Footer -->
+    <div class="ai-chat-footer">
+      <form class="ai-input-form" id="ai-chat-form">
+        <input type="text" id="ai-chat-input" class="ai-chat-input" placeholder="Ask about price, timeline, wedding portals..." autocomplete="off">
+        <button type="submit" class="ai-chat-send-btn" id="ai-chat-send" aria-label="Send">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
+        </button>
+      </form>
+      <div class="ai-chat-footer-note">
+        <span>⚡ Powered by Deepak's AI & Next.js • </span>
+        <a href="https://wa.me/916204643184?text=Hi%20Deepak%20ji%2C%20I%20have%20a%20query%20regarding%20website%20development!" target="_blank" style="color: var(--marigold-gold); text-decoration: underline;">Direct WhatsApp</a>
+      </div>
+    </div>
+  </div>
 
   <script src="/static/js/portfolio.js"></script>
 </body>

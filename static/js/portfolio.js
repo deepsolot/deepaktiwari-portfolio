@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSpring3DTilt();
   initSmoothScroll();
   initQuoteCalculator();
+  initAIChatAssistant();
 });
 
 // --------------------------------------------------------------------------
@@ -309,3 +310,188 @@ function initQuoteCalculator() {
 
   updateQuoteCalculator();
 }
+
+// --------------------------------------------------------------------------
+// 6. Interactive AI Chat Assistant Engine & Hybrid Intelligence
+// --------------------------------------------------------------------------
+function initAIChatAssistant() {
+  const launcherBtn = document.getElementById('ai-launcher-btn');
+  const launcherWrap = document.getElementById('ai-launcher-wrap');
+  const navAiBtn = document.getElementById('nav-ai-btn');
+  const dockAiBtn = document.getElementById('dock-ai-btn');
+  const chatWindow = document.getElementById('ai-chat-window');
+  const chatClose = document.getElementById('ai-chat-close');
+  const chatMinimize = document.getElementById('ai-chat-minimize');
+  const chatForm = document.getElementById('ai-chat-form');
+  const chatInput = document.getElementById('ai-chat-input');
+  const chatBody = document.getElementById('ai-chat-body');
+  const typingIndicator = document.getElementById('ai-typing');
+
+  if (!chatWindow) return;
+
+  function openAIChat() {
+    chatWindow.style.display = 'flex';
+    if (launcherWrap) launcherWrap.style.display = 'none';
+    chatBody.scrollTop = chatBody.scrollHeight;
+    if (chatInput) {
+      setTimeout(() => chatInput.focus(), 200);
+    }
+  }
+
+  function closeAIChat() {
+    chatWindow.style.display = 'none';
+    if (launcherWrap) launcherWrap.style.display = 'block';
+  }
+
+  if (launcherBtn) launcherBtn.addEventListener('click', openAIChat);
+  if (navAiBtn) navAiBtn.addEventListener('click', openAIChat);
+  if (dockAiBtn) dockAiBtn.addEventListener('click', openAIChat);
+  if (chatClose) chatClose.addEventListener('click', closeAIChat);
+  if (chatMinimize) chatMinimize.addEventListener('click', closeAIChat);
+
+  // Bind clicks on chip suggestions
+  document.addEventListener('click', (e) => {
+    const chip = e.target.closest('.ai-chip');
+    if (chip) {
+      const prompt = chip.dataset.prompt || chip.textContent;
+      handleUserQuery(prompt);
+    }
+  });
+
+  // Handle Form Submission
+  if (chatForm && chatInput) {
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = chatInput.value.trim();
+      if (!val) return;
+      handleUserQuery(val);
+      chatInput.value = '';
+    });
+  }
+
+  // Helper to format text with markdown bold, links, and line breaks
+  function formatMarkdown(text) {
+    if (!text) return '';
+    let formatted = text
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+      .replace(/\n• /g, '<br>• ')
+      .replace(/\n\n/g, '<br><br>')
+      .replace(/\n/g, '<br>');
+    return formatted;
+  }
+
+  // Append a message to the chat body
+  function appendMessage(sender, text, suggestions = []) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `ai-msg ai-msg-${sender}`;
+
+    const bubble = document.createElement('div');
+    bubble.className = 'ai-msg-bubble';
+    bubble.innerHTML = formatMarkdown(text);
+    msgDiv.appendChild(bubble);
+
+    const timeSpan = document.createElement('span');
+    timeSpan.className = 'ai-msg-time';
+    const now = new Date();
+    timeSpan.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    msgDiv.appendChild(timeSpan);
+
+    chatBody.appendChild(msgDiv);
+
+    // If bot provided suggestions, render them
+    if (sender === 'bot' && suggestions && suggestions.length > 0) {
+      const chipsDiv = document.createElement('div');
+      chipsDiv.className = 'ai-chips-wrap';
+      suggestions.forEach((s) => {
+        const btn = document.createElement('button');
+        btn.className = 'ai-chip';
+        btn.dataset.prompt = s;
+        btn.textContent = s;
+        chipsDiv.appendChild(btn);
+      });
+      chatBody.appendChild(chipsDiv);
+    }
+
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  // Client-Side Fallback Knowledge Engine (guarantees offline/standalone resilience)
+  function getClientFallbackReply(query) {
+    const q = query.toLowerCase();
+
+    if (q.includes('why') || q.includes('cost') || q.includes('charge') || q.includes('worth') || q.includes('roi') || q.includes('expensive')) {
+      return {
+        reply: "💡 **Why Our Pricing (₹15k – ₹45k) Saves You Money:**\n\n• **3-Year Hosting & Domain Included:** Saves ₹12,000+ upfront vs cheap sites that charge yearly renewals.\n• **1 Year Free Support & AMC:** ₹18,000 agency value included.\n• **Next.js Sub-Second Speed (<0.8s):** 95+ Google PageSpeed, zero PHP malware.\n• **1–2 Client Deals Payback:** High-converting lead funnels recover your full cost.\n• **100% Code Ownership:** Full GitHub repository handoff.\n• **50/50 Milestone:** 50% advance, 50% only on final approval.",
+        suggestions: ["💰 View Packages", "🤝 Discuss Budget", "📞 Talk to Deepak"]
+      };
+    }
+
+    if (q.includes('negotiat') || q.includes('budget') || q.includes('discount') || q.includes('flexible') || q.includes('kam')) {
+      return {
+        reply: "🤝 **Friendly Negotiation & Budget Flexibility:**\n\nWe build relationships, not rigid invoices! Deepak is directly accessible:\n• 50% advance to start, 50% only after live staging review.\n• Scope can be adjusted to match your exact starting budget.\n• Call or WhatsApp Deepak directly (+91 6204643184) for a friendly chat.",
+        suggestions: ["💬 WhatsApp Deepak", "💰 View Pricing", "⚡ Why Next.js?"]
+      };
+    }
+
+    if (q.includes('wedding') || q.includes('shaadi') || q.includes('birthday') || q.includes('memory') || q.includes('celebrat') || q.includes('shagun')) {
+      return {
+        reply: "💍 **Royal Wedding & Memory Celebration Portals:**\n\n• **WhatsApp RSVP:** Headcount & dietary preferences.\n• **Multi-Event GPS Navigation:** Google Maps directions to Haldi, Sangeet & Shaadi.\n• **Pre-Wedding Reels:** HD photo gallery & drone film embeds.\n• **UPI Shagun QR:** Direct digital gifts to bride/groom.\n• **Live Blessings Wall:** Friends worldwide post photos & wishes.\n\n**Pricing:** Birthday/Tribute ₹8,999 | Royal Wedding ₹14,999 – ₹18,999.",
+        suggestions: ["💍 Book Royal Wedding Portal", "🎂 Book Birthday Portal", "📞 Talk to Deepak"]
+      };
+    }
+
+    if (q.includes('price') || q.includes('pricing') || q.includes('rate') || q.includes('package') || q.includes('how much')) {
+      return {
+        reply: "💎 **Web & Software Pricing Packages:**\n\n1. **Starter Business:** ₹ 14,999 (3–5 Days)\n2. **Growth & Lead Engine ⭐:** ₹ 21,000 – ₹ 24,999 (3 Years Hosting + 1 Year AMC)\n3. **Enterprise & E-Commerce:** ₹ 34,999 – ₹ 45,000\n4. **Royal Wedding Portal:** ₹ 14,999 – ₹ 18,999\n5. **Native Mobile App:** ₹ 25,000 – ₹ 55,000\n\nAll packages include 50/50 milestone payment and source code ownership!",
+        suggestions: ["💡 Why ₹15k–₹45k?", "🤝 Budget Negotiation", "🧮 Calculator"]
+      };
+    }
+
+    if (q.includes('contact') || q.includes('phone') || q.includes('whatsapp') || q.includes('hire') || q.includes('call')) {
+      return {
+        reply: "📞 **Contact Deepak Kumar Tiwari Directly:**\n\n• **WhatsApp & Phone:** [+91 6204643184](https://wa.me/916204643184)\n• **Email:** [deepaksolot@gmail.com](mailto:deepaksolot@gmail.com)\n• **Location:** Varanasi (Kashi), UP, India\n\nDrop a quick WhatsApp message to get an instant reply!",
+        suggestions: ["💬 Open WhatsApp Chat", "💰 View Pricing Menu", "💼 View Projects"]
+      };
+    }
+
+    return {
+      reply: "Namaste! 🙏 I am **Deepak's AI Concierge**.\n\nI can help you with pricing, our 3-year hosting inclusions, 50/50 milestone payments, royal wedding portals, or connecting directly with Deepak on WhatsApp (+91 6204643184). What would you like to know?",
+      suggestions: ["💰 Pricing Packages", "💡 Why ₹15k–₹45k?", "💍 Wedding Portals", "🤝 Budget Negotiation"]
+    };
+  }
+
+  // Core Query Processing
+  function handleUserQuery(query) {
+    appendMessage('user', query);
+
+    if (typingIndicator) {
+      typingIndicator.style.display = 'flex';
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    // Attempt to fetch from server /api/ai-chat
+    fetch('/api/ai-chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: query })
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Network response not ok');
+        return res.json();
+      })
+      .then((data) => {
+        if (typingIndicator) typingIndicator.style.display = 'none';
+        appendMessage('bot', data.reply || 'Namaste! How can I assist you further?', data.suggestions || []);
+      })
+      .catch((_err) => {
+        // Fallback to client-side heuristic knowledge engine
+        setTimeout(() => {
+          if (typingIndicator) typingIndicator.style.display = 'none';
+          const fallback = getClientFallbackReply(query);
+          appendMessage('bot', fallback.reply, fallback.suggestions);
+        }, 350);
+      });
+  }
+}
+
