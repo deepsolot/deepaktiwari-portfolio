@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initUltraSmoothCanvas();
   initSpring3DTilt();
   initSmoothScroll();
+  initQuoteCalculator();
 });
 
 // --------------------------------------------------------------------------
@@ -247,4 +248,63 @@ I checked your live projects (ARL Music Production, Dharohar Banarasi, and New Z
   const waUrl = `https://wa.me/916204643184?text=${encoded}`;
 
   window.open(waUrl, '_blank');
+}
+
+// --------------------------------------------------------------------------
+// 5. Interactive Live Quotation Calculator Engine
+// --------------------------------------------------------------------------
+function updateQuoteCalculator() {
+  const baseTierInput = document.querySelector('input[name="quote-tier"]:checked');
+  if (!baseTierInput) return;
+
+  const basePrice = parseInt(baseTierInput.value, 10);
+  const tierName = baseTierInput.dataset.name || 'Custom Package';
+
+  let total = basePrice;
+  const selectedAddons = [];
+
+  document.querySelectorAll('.quote-addon-checkbox:checked').forEach((cb) => {
+    total += parseInt(cb.value, 10);
+    selectedAddons.push(cb.dataset.addon);
+  });
+
+  const formattedTotal = '₹ ' + total.toLocaleString('en-IN');
+  const priceDisplay = document.getElementById('calc-total-display');
+  if (priceDisplay) {
+    priceDisplay.textContent = formattedTotal;
+  }
+
+  // Update WhatsApp pre-filled button
+  const waBtn = document.getElementById('calc-whatsapp-btn');
+  if (waBtn) {
+    const addonsText = selectedAddons.length > 0 
+      ? selectedAddons.map(a => '  • ' + a).join('\n') 
+      : '  • Core package features only';
+
+    const msg = `Namaste Deepak ji 🙏
+
+I built a custom website quotation on your portfolio:
+
+📦 *Base Tier:* ${tierName} (₹${basePrice.toLocaleString('en-IN')})
+🛠️ *Selected Custom Add-ons:*
+${addonsText}
+
+💰 *Estimated Total:* ${formattedTotal}
+
+I want to discuss this project structure, timeline, and get started for my business!`;
+
+    waBtn.href = `https://wa.me/916204643184?text=${encodeURIComponent(msg)}`;
+  }
+}
+
+function initQuoteCalculator() {
+  document.querySelectorAll('input[name="quote-tier"]').forEach((radio) => {
+    radio.addEventListener('change', updateQuoteCalculator);
+  });
+
+  document.querySelectorAll('.quote-addon-checkbox').forEach((cb) => {
+    cb.addEventListener('change', updateQuoteCalculator);
+  });
+
+  updateQuoteCalculator();
 }
