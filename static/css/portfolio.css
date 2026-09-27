@@ -2142,3 +2142,296 @@ h1, h2, h3, h4 {
   line-height: 1.1;
   margin: 10px 0 16px;
 }
+
+/* ==========================================================================
+   Cost Justification & ROI Value Pillars
+   ========================================================================== */
+.value-justification-section {
+  margin: 30px 0 60px;
+}
+
+.value-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+}
+
+@media (max-width: 1024px) {
+  .value-pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .value-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.value-pillar-card {
+  padding: 30px 26px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-marigold-glass);
+  backdrop-filter: blur(16px);
+  position: relative;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.value-pillar-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(251, 191, 36, 0.45);
+  box-shadow: var(--shadow-glow);
+}
+
+.value-pillar-icon {
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.value-pillar-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tag-saving {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.tag-quality {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.tag-roi {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.tag-ownership {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.value-pillar-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.value-pillar-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.value-comparison-box {
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.8rem;
+}
+
+.comp-bad {
+  color: #f87171;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.comp-good {
+  color: #4ade80;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   Friendly Negotiation & Budget Flexibility Banner
+   ========================================================================== */
+.negotiation-banner-box {
+  margin: 40px 0 60px;
+  padding: 34px 36px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(20, 15, 5, 0.85) 50%, rgba(217, 119, 6, 0.12) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .negotiation-banner-box {
+    grid-template-columns: 1fr;
+    padding: 26px 20px;
+  }
+}
+
+.negotiation-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.negotiation-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.negotiation-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: #e2e8f0;
+  line-height: 1.45;
+}
+
+.negotiation-item span.icon {
+  font-size: 1.1rem;
+  color: var(--marigold-gold);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Royal Wedding, Birthday & Memory Celebration Portals
+   ========================================================================== */
+.wedding-section-container {
+  margin: 60px 0;
+  padding: 44px 36px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(145deg, rgba(30, 10, 25, 0.85) 0%, rgba(15, 8, 18, 0.95) 50%, rgba(25, 12, 10, 0.85) 100%);
+  border: 1px solid rgba(244, 114, 182, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(236, 72, 153, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.wedding-section-container::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.wedding-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(236, 72, 153, 0.18);
+  border: 1px solid rgba(236, 72, 153, 0.4);
+  color: #f472b6;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.wedding-portal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-top: 36px;
+}
+
+@media (max-width: 900px) {
+  .wedding-portal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wedding-portal-card {
+  padding: 32px 28px;
+  border-radius: var(--radius-lg);
+  background: rgba(10, 5, 12, 0.7);
+  border: 1px solid rgba(244, 114, 182, 0.25);
+  backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+.wedding-portal-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(244, 114, 182, 0.6);
+  box-shadow: 0 16px 36px rgba(236, 72, 153, 0.2);
+}
+
+.wedding-portal-card.featured-wedding {
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  background: linear-gradient(135deg, rgba(35, 15, 20, 0.8) 0%, rgba(20, 8, 14, 0.85) 100%);
+  box-shadow: 0 12px 35px rgba(245, 158, 11, 0.2);
+}
+
+.wedding-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 32px 0 10px;
+}
+
+@media (max-width: 860px) {
+  .wedding-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .wedding-features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wedding-feat-box {
+  padding: 16px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.84rem;
+  color: #e2e8f0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.45;
+}
+
+.wedding-feat-box span.feat-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+

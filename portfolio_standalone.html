@@ -2243,6 +2243,299 @@ h1, h2, h3, h4 {
   margin: 10px 0 16px;
 }
 
+/* ==========================================================================
+   Cost Justification & ROI Value Pillars
+   ========================================================================== */
+.value-justification-section {
+  margin: 30px 0 60px;
+}
+
+.value-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+}
+
+@media (max-width: 1024px) {
+  .value-pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .value-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.value-pillar-card {
+  padding: 30px 26px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-marigold-glass);
+  backdrop-filter: blur(16px);
+  position: relative;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.value-pillar-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(251, 191, 36, 0.45);
+  box-shadow: var(--shadow-glow);
+}
+
+.value-pillar-icon {
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.value-pillar-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tag-saving {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.tag-quality {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.tag-roi {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.tag-ownership {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.value-pillar-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.value-pillar-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.value-comparison-box {
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.8rem;
+}
+
+.comp-bad {
+  color: #f87171;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.comp-good {
+  color: #4ade80;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   Friendly Negotiation & Budget Flexibility Banner
+   ========================================================================== */
+.negotiation-banner-box {
+  margin: 40px 0 60px;
+  padding: 34px 36px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(20, 15, 5, 0.85) 50%, rgba(217, 119, 6, 0.12) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .negotiation-banner-box {
+    grid-template-columns: 1fr;
+    padding: 26px 20px;
+  }
+}
+
+.negotiation-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.negotiation-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.negotiation-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: #e2e8f0;
+  line-height: 1.45;
+}
+
+.negotiation-item span.icon {
+  font-size: 1.1rem;
+  color: var(--marigold-gold);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Royal Wedding, Birthday & Memory Celebration Portals
+   ========================================================================== */
+.wedding-section-container {
+  margin: 60px 0;
+  padding: 44px 36px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(145deg, rgba(30, 10, 25, 0.85) 0%, rgba(15, 8, 18, 0.95) 50%, rgba(25, 12, 10, 0.85) 100%);
+  border: 1px solid rgba(244, 114, 182, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(236, 72, 153, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.wedding-section-container::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.wedding-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(236, 72, 153, 0.18);
+  border: 1px solid rgba(236, 72, 153, 0.4);
+  color: #f472b6;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.wedding-portal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-top: 36px;
+}
+
+@media (max-width: 900px) {
+  .wedding-portal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wedding-portal-card {
+  padding: 32px 28px;
+  border-radius: var(--radius-lg);
+  background: rgba(10, 5, 12, 0.7);
+  border: 1px solid rgba(244, 114, 182, 0.25);
+  backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+.wedding-portal-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(244, 114, 182, 0.6);
+  box-shadow: 0 16px 36px rgba(236, 72, 153, 0.2);
+}
+
+.wedding-portal-card.featured-wedding {
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  background: linear-gradient(135deg, rgba(35, 15, 20, 0.8) 0%, rgba(20, 8, 14, 0.85) 100%);
+  box-shadow: 0 12px 35px rgba(245, 158, 11, 0.2);
+}
+
+.wedding-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 32px 0 10px;
+}
+
+@media (max-width: 860px) {
+  .wedding-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .wedding-features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wedding-feat-box {
+  padding: 16px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.84rem;
+  color: #e2e8f0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.45;
+}
+
+.wedding-feat-box span.feat-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+
 </style>
 </head>
 <body class="luxury-dark glass-experience">
@@ -2272,6 +2565,7 @@ h1, h2, h3, h4 {
         <a href="#projects" class="nav-link">Live Projects</a>
         <a href="#why-nextjs" class="nav-link">Why Next.js</a>
         <a href="#pricing" class="nav-link">Rates & Menu</a>
+        <a href="#celebrations" class="nav-link">Weddings & Memories 💍</a>
         <a href="#testimonials" class="nav-link">Client Reviews</a>
         <a href="#process" class="nav-link">Workflow</a>
         <a href="#contact" class="nav-link">Contact</a>
@@ -2786,6 +3080,105 @@ h1, h2, h3, h4 {
       Why do professional websites cost ₹15,000 to ₹45,000+? Here is our exact, transparent breakdown of cloud infrastructure, 3-year domain & hosting coverage, bespoke Next.js engineering, security, and feature modules.
     </p>
 
+    <!-- Why We Charge ₹15k - ₹45k & How It Delivers 10x ROI -->
+    <div class="value-justification-section">
+      <div class="section-badge-center">
+        <span>VALUE & ROI JUSTIFICATION</span>
+      </div>
+      <h3 class="section-heading" style="font-size: 2rem; margin-bottom: 12px;">
+        Why Our Pricing <span class="gold-text">Saves You Money</span> (10x Value vs Cheap Templates)
+      </h3>
+      <p class="section-subheading" style="max-width: 820px;">
+        Many agencies quote ₹3,000 to ₹5,000 for a broken WordPress template, then hit you with recurring server bills, broken plugins, and zero support. Here is why our bespoke Next.js development is an investment that pays for itself in just 1–2 client deals:
+      </p>
+
+      <div class="value-pillars-grid">
+        <!-- Pillar 1 -->
+        <div class="value-pillar-card tilt-target">
+          <div class="value-pillar-icon">🌐</div>
+          <span class="value-pillar-tag tag-saving">Saves ₹12,000+ Upfront</span>
+          <h4 class="value-pillar-title">3-Year Domain & Cloud Hosting</h4>
+          <p class="value-pillar-desc">
+            You pay <strong>₹0 in hosting or server bills for 3 full years</strong>. We provide high-speed global Edge Cloud deployment, custom .com / .in domain, and bank-grade SSL encryption included in your package.
+          </p>
+          <div class="value-comparison-box">
+            <div class="comp-bad">❌ Cheap Sites: ₹4,000–₹6,000/yr hidden renewals</div>
+            <div class="comp-good">✓ With Us: 100% Free & Covered for 36 Months</div>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="value-pillar-card tilt-target">
+          <div class="value-pillar-icon">🛠️</div>
+          <span class="value-pillar-tag tag-saving">₹18,000 Industry Value</span>
+          <h4 class="value-pillar-title">1 Full Year Free Support & AMC</h4>
+          <p class="value-pillar-desc">
+            Never worry about broken layouts or content updates. You get <strong>365 days of direct WhatsApp & phone technical support</strong>, real-time bug fixes, uptime monitoring, and content additions completely free.
+          </p>
+          <div class="value-comparison-box">
+            <div class="comp-bad">❌ Freelancers: Vanish immediately after payment</div>
+            <div class="comp-good">✓ With Us: Dedicated 1-Year Personal Webmaster</div>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="value-pillar-card tilt-target">
+          <div class="value-pillar-icon">⚡</div>
+          <span class="value-pillar-tag tag-quality">Google 95+ PageSpeed</span>
+          <h4 class="value-pillar-title">Sub-Second Speed vs Clunky WordPress</h4>
+          <p class="value-pillar-desc">
+            Over 53% of mobile visitors leave if a site takes &gt;3s to load. Built with handcrafted <strong>Next.js 16</strong>, our websites load under <strong>0.8 seconds</strong>, rank higher on Google SEO, and are immune to PHP malware.
+          </p>
+          <div class="value-comparison-box">
+            <div class="comp-bad">❌ WordPress: 4–6s load time, hacked plugins</div>
+            <div class="comp-good">✓ Next.js: Instant 0.8s load, 100% hack-proof</div>
+          </div>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="value-pillar-card tilt-target">
+          <div class="value-pillar-icon">📈</div>
+          <span class="value-pillar-tag tag-roi">Guaranteed 1-Deal Payback</span>
+          <h4 class="value-pillar-title">Engineered to Convert Visitors to Cash</h4>
+          <p class="value-pillar-desc">
+            Not just an online brochure. We architect high-converting lead funnels: <strong>1-tap WhatsApp consultation buttons</strong>, instant phone dials, appointment scheduling, and Google Maps local SEO routes that turn visitors into paying clients.
+          </p>
+          <div class="value-comparison-box">
+            <div class="comp-bad">❌ Passive Sites: 0 enquiries, money down drain</div>
+            <div class="comp-good">✓ Lead Funnel: 1 to 2 closed deals covers full cost</div>
+          </div>
+        </div>
+
+        <!-- Pillar 5 -->
+        <div class="value-pillar-card tilt-target">
+          <div class="value-pillar-icon">🔑</div>
+          <span class="value-pillar-tag tag-ownership">Zero Lock-In</span>
+          <h4 class="value-pillar-title">100% Code & Asset Ownership</h4>
+          <p class="value-pillar-desc">
+            You own <strong>100% of your source code, GitHub repository, and digital assets</strong> forever. No monthly platform subscriptions (like Shopify/Wix where your site disappears if you stop paying). Your digital real estate belongs to you.
+          </p>
+          <div class="value-comparison-box">
+            <div class="comp-bad">❌ Platforms: ₹2,500/mo forever or get deleted</div>
+            <div class="comp-good">✓ Full Handoff: Clean Git repo & absolute ownership</div>
+          </div>
+        </div>
+
+        <!-- Pillar 6 -->
+        <div class="value-pillar-card tilt-target">
+          <div class="value-pillar-icon">🛡️</div>
+          <span class="value-pillar-tag tag-roi">Zero Risk Guarantee</span>
+          <h4 class="value-pillar-title">50% Milestone-Based Payment</h4>
+          <p class="value-pillar-desc">
+            You never take a financial risk. We operate on a fair milestone structure: <strong>50% advance</strong> to initiate design and development, and the remaining <strong>50% only after you test the staging site and are 100% satisfied</strong>.
+          </p>
+          <div class="value-comparison-box">
+            <div class="comp-bad">❌ Risky Agencies: Demand 100% upfront payment</div>
+            <div class="comp-good">✓ Safe Process: Pay remainder only after launch approval</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 3 Tiered Packages Grid -->
     <div class="pricing-cards-grid">
       <!-- Tier 1: Starter Business / Showcase -->
@@ -2942,6 +3335,44 @@ h1, h2, h3, h4 {
       </div>
     </div>
 
+    <!-- Friendly Negotiation & Budget Flexibility Banner -->
+    <div class="negotiation-banner-box tilt-target">
+      <div>
+        <div class="section-badge-center" style="justify-content: flex-start; margin-bottom: 12px;">
+          <span>🤝 CLIENT-FIRST PHILOSOPHY</span>
+        </div>
+        <h3 class="negotiation-title">Open Negotiation & <span class="gold-text">Budget Flexibility</span></h3>
+        <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
+          We understand that every startup, local business, doctor, artisan, and family has unique financial milestones. <strong>We believe in building long-term relationships, not rigid invoices.</strong>
+        </p>
+        <div class="negotiation-pillars">
+          <div class="negotiation-item">
+            <span class="icon">💬</span>
+            <span><strong>Always Open to Friendly Discussion:</strong> If your budget is tight, talk directly to Deepak. We will gladly adjust scope, remove unneeded add-ons, or create a comfortable payment plan.</span>
+          </div>
+          <div class="negotiation-item">
+            <span class="icon">⚖️</span>
+            <span><strong>Phase-Wise Milestone Rollouts:</strong> Launch essential core pages first within your current budget, then scale up features as your revenue grows.</span>
+          </div>
+          <div class="negotiation-item">
+            <span class="icon">🛡️</span>
+            <span><strong>50/50 Peace of Mind:</strong> Pay 50% advance to start, and the balance 50% only when you review and approve the live staging site.</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; padding: 24px; border-radius: var(--radius-md); background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(251, 191, 36, 0.3);">
+        <div style="font-size: 0.85rem; color: #fbbf24; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">Have a Specific Budget in Mind?</div>
+        <div style="font-size: 1.45rem; font-weight: 800; color: #fff; margin-bottom: 10px;">Let's Find a Win-Win Solution</div>
+        <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 18px; line-height: 1.5;">
+          No pressure. No rigid quotes. Call or WhatsApp Deepak directly to discuss your project requirements and custom pricing.
+        </p>
+        <a href="https://wa.me/916204643184?text=Namaste%20Deepak%20ji%20%F0%9F%99%8F%20I%20want%20to%20discuss%20a%20website%20project%20with%20my%20custom%20budget%20requirements.%20Can%20we%20have%20a%20friendly%20discussion%3F" target="_blank" class="btn-primary-glass" style="width: 100%; justify-content: center;">
+          <span>Discuss Budget on WhatsApp</span>
+        </a>
+      </div>
+    </div>
+
     <!-- Mobile App Development Suite Banner -->
     <div class="app-dev-banner glass-panel tilt-target">
       <div>
@@ -2969,6 +3400,139 @@ h1, h2, h3, h4 {
         <a href="https://wa.me/916204643184?text=Hi%20Deepak%20ji%2C%20I%20want%20to%20inquire%20about%20Cross-Platform%20Mobile%20App%20Development%20for%20my%20business!" target="_blank" class="btn-primary-glass" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); justify-content: center; width: 100%;">
           <span>Discuss Mobile App on WhatsApp</span>
         </a>
+      </div>
+    </div>
+
+    <!-- Luxury Wedding, Birthday & Milestone Memory Celebration Portals -->
+    <div class="wedding-section-container tilt-target" id="celebrations">
+      <div class="wedding-badge">
+        <span>💍 ROYAL WEDDINGS, BIRTHDAYS & DIGITAL MEMORIES</span>
+      </div>
+      <h3 class="section-heading" style="text-align: left; font-size: 2.3rem; margin-bottom: 10px;">
+        Luxury Wedding & <span style="background: linear-gradient(135deg, #f472b6 0%, #fbbf24 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Celebration Memory Portals</span>
+      </h3>
+      <p style="color: #cbd5e1; font-size: 0.96rem; max-width: 820px; line-height: 1.6; margin-bottom: 24px;">
+        Why spend ₹25,000 on paper wedding cards that get lost or thrown away? Give your guests an unforgettable luxury digital experience with interactive WhatsApp RSVP, ceremony GPS maps, cinematic video reels, live digital blessings wall, and UPI Shagun gifts!
+      </p>
+
+      <!-- 6 Key Features of Wedding/Memory Portals -->
+      <div class="wedding-features-grid">
+        <div class="wedding-feat-box">
+          <span class="feat-icon">💌</span>
+          <div>
+            <strong>Interactive WhatsApp RSVP</strong>
+            <p style="font-size: 0.78rem; color: #94a3b8; margin-top: 4px;">Guests RSVP with headcount & food preferences straight into WhatsApp.</p>
+          </div>
+        </div>
+
+        <div class="wedding-feat-box">
+          <span class="feat-icon">📍</span>
+          <div>
+            <strong>Multi-Event GPS Navigation</strong>
+            <p style="font-size: 0.78rem; color: #94a3b8; margin-top: 4px;">Haldi, Mehendi, Sangeet & Shaadi with 1-tap Google Maps directions.</p>
+          </div>
+        </div>
+
+        <div class="wedding-feat-box">
+          <span class="feat-icon">🎬</span>
+          <div>
+            <strong>Cinematic Pre-Wedding Reels</strong>
+            <p style="font-size: 0.78rem; color: #94a3b8; margin-top: 4px;">High-resolution photo album, love story timeline & drone film player.</p>
+          </div>
+        </div>
+
+        <div class="wedding-feat-box">
+          <span class="feat-icon">🎁</span>
+          <div>
+            <strong>UPI Shagun & Gift Registry</strong>
+            <p style="font-size: 0.78rem; color: #94a3b8; margin-top: 4px;">Direct UPI QR code for relatives worldwide to send Shagun safely.</p>
+          </div>
+        </div>
+
+        <div class="wedding-feat-box">
+          <span class="feat-icon">🕊️</span>
+          <div>
+            <strong>Live Blessings Wall & Guestbook</strong>
+            <p style="font-size: 0.78rem; color: #94a3b8; margin-top: 4px;">Friends & distant family leave heartfelt blessings saved forever.</p>
+          </div>
+        </div>
+
+        <div class="wedding-feat-box">
+          <span class="feat-icon">📱</span>
+          <div>
+            <strong>QR Code for Physical Cards</strong>
+            <p style="font-size: 0.78rem; color: #94a3b8; margin-top: 4px;">Print-ready QR code to print on your paper invitations for easy scanning.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wedding & Celebration Tiers -->
+      <div class="wedding-portal-grid">
+        <!-- Option 1: Milestone Birthday / Anniversary Memory Portal -->
+        <div class="wedding-portal-card">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span class="tier-badge-pill" style="background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.4);">
+                🎂 BIRTHDAY & MILESTONE MEMORY
+              </span>
+              <span style="font-size: 0.8rem; color: #fbbf24;">⚡ 2–3 Days Delivery</span>
+            </div>
+            <h4 style="font-size: 1.45rem; font-weight: 800; color: #fff; margin-bottom: 6px;">Celebration & Tribute Portal</h4>
+            <p style="font-size: 0.85rem; color: #94a3b8; line-height: 1.5; margin-bottom: 18px;">
+              Perfect for 1st Birthdays, Parents' 25th/50th Silver & Golden Anniversaries, Retirements & Family Archives.
+            </p>
+
+            <div style="font-size: 2.2rem; font-weight: 900; font-family: var(--font-heading); color: #f472b6; margin-bottom: 18px;">
+              ₹ 8,999
+            </div>
+
+            <ul class="tier-features-list" style="margin-bottom: 24px;">
+              <li><span class="check-icon">✓</span><span>Custom personal domain (e.g. rohitturns30.com) with 2-year cloud hosting.</span></li>
+              <li><span class="check-icon">✓</span><span>High-definition photo gallery carousel with background music player.</span></li>
+              <li><span class="check-icon">✓</span><span>Interactive digital guestbook & message wall for family wishes.</span></li>
+              <li><span class="check-icon">✓</span><span>Event venue directions with countdown clock to party time.</span></li>
+              <li><span class="check-icon">✓</span><span>WhatsApp 1-tap invitation shareable link for family groups.</span></li>
+            </ul>
+          </div>
+
+          <a href="https://wa.me/916204643184?text=Hi%20Deepak%20ji%2C%20I%20want%20to%20create%20a%20Milestone%20Birthday%20%2F%20Anniversary%20Memory%20Portal%20(%E2%82%B98%2C999)!" target="_blank" class="btn-secondary-glass" style="width: 100%; justify-content: center; border-color: rgba(236, 72, 153, 0.4);">
+            <span>Book Birthday / Tribute Portal (₹8,999)</span>
+          </a>
+        </div>
+
+        <!-- Option 2: Royal Multi-Day Wedding Hub -->
+        <div class="wedding-portal-card featured-wedding">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span class="tier-badge-pill" style="background: var(--marigold-gradient); color: #111827; font-weight: 800;">
+                👑 GRAND ROYAL WEDDING HUB
+              </span>
+              <span style="font-size: 0.8rem; color: #fbbf24;">🚀 4–5 Days Delivery</span>
+            </div>
+            <h4 style="font-size: 1.45rem; font-weight: 800; color: #fff; margin-bottom: 6px;">Royal Vivah Patrika & Celebration Portal</h4>
+            <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 18px;">
+              Complete luxury wedding ecosystem for Bride & Groom families across the globe.
+            </p>
+
+            <div style="font-size: 2.2rem; font-weight: 900; font-family: var(--font-heading); color: #fbbf24; margin-bottom: 18px;">
+              ₹ 14,999 – ₹ 18,999
+            </div>
+
+            <ul class="tier-features-list" style="margin-bottom: 24px;">
+              <li><span class="star-icon">★</span><span><strong>Couple Domain (e.g. rohitwedsanjali.in):</strong> 3-Year Cloud Preservation included.</span></li>
+              <li><span class="star-icon">★</span><span><strong>All Ceremonies Itinerary:</strong> Haldi, Mehendi, Sangeet, Shaadi & Reception with GPS route navigation.</span></li>
+              <li><span class="star-icon">★</span><span><strong>Instant WhatsApp RSVP:</strong> Headcount, attendance & food preference tracking.</span></li>
+              <li><span class="star-icon">★</span><span><strong>UPI Shagun QR Scanner:</strong> Send Shagun directly to bride & groom accounts securely.</span></li>
+              <li><span class="star-icon">★</span><span><strong>Live Blessings Wall:</strong> Relatives and friends post photos & blessings in real-time.</span></li>
+              <li><span class="star-icon">★</span><span><strong>Cinematic Video Reels & Music:</strong> Pre-wedding video embeds with curated soundtrack.</span></li>
+              <li><span class="star-icon">★</span><span><strong>Print-Ready QR Code:</strong> For printing on paper wedding card envelopes.</span></li>
+            </ul>
+          </div>
+
+          <a href="https://wa.me/916204643184?text=Namaste%20Deepak%20ji%20%F0%9F%99%8F%20I%20want%20to%20design%20a%20Grand%20Royal%20Wedding%20Portal%20for%20our%20family%20wedding!%20Please%20share%20details%20and%20examples." target="_blank" class="btn-primary-glass" style="width: 100%; justify-content: center; background: linear-gradient(135deg, #d97706 0%, #db2777 100%);">
+            <span>Book Royal Wedding Portal on WhatsApp</span>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -3027,6 +3591,16 @@ h1, h2, h3, h4 {
             <td><span class="addon-badge">+ ₹ 4,500 / yr</span></td>
           </tr>
           <tr>
+            <td><strong>🕊️ Live Digital Blessings Wall & Guestbook</strong></td>
+            <td>Real-time blessings, guestbook wishes & photo uploads from friends and relatives worldwide.</td>
+            <td><span class="addon-badge">+ ₹ 2,499</span></td>
+          </tr>
+          <tr>
+            <td><strong>🎁 UPI Shagun & Digital Gift Registry QR</strong></td>
+            <td>Custom branded UPI QR code integration to receive Shagun and wedding gifts directly to your bank account.</td>
+            <td><span class="addon-badge">+ ₹ 1,999</span></td>
+          </tr>
+          <tr>
             <td><strong>📱 Companion Mobile App (Android APK)</strong></td>
             <td>Convert your Next.js web application into an installable mobile app with live synchronized data.</td>
             <td><span class="addon-badge">+ ₹ 25,000</span></td>
@@ -3064,6 +3638,18 @@ h1, h2, h3, h4 {
             </label>
 
             <label class="calc-radio-label">
+              <input type="radio" name="quote-tier" value="14999" data-name="Royal Wedding Portal">
+              <span style="font-weight: 700; color: #fff; margin-top: 4px;">Wedding 💍</span>
+              <span style="font-size: 0.8rem; color: #f472b6;">₹ 14,999</span>
+            </label>
+
+            <label class="calc-radio-label">
+              <input type="radio" name="quote-tier" value="8999" data-name="Birthday / Memory Portal">
+              <span style="font-weight: 700; color: #fff; margin-top: 4px;">Birthday 🎂</span>
+              <span style="font-size: 0.8rem; color: #f472b6;">₹ 8,999</span>
+            </label>
+
+            <label class="calc-radio-label">
               <input type="radio" name="quote-tier" value="34999" data-name="Enterprise & Studio">
               <span style="font-weight: 700; color: #fff; margin-top: 4px;">Enterprise</span>
               <span style="font-size: 0.8rem; color: var(--marigold-gold);">₹ 34,999</span>
@@ -3095,6 +3681,16 @@ h1, h2, h3, h4 {
             <label class="calc-checkbox-label">
               <input type="checkbox" class="quote-addon-checkbox" value="8999" data-addon="E-Commerce Cart & Inventory (₹8,999)">
               <span>E-Commerce Cart & Invoicing (+₹8,999)</span>
+            </label>
+
+            <label class="calc-checkbox-label">
+              <input type="checkbox" class="quote-addon-checkbox" value="2499" data-addon="Live Blessings Wall & Guestbook (₹2,499)">
+              <span>Live Blessings Wall (+₹2,499)</span>
+            </label>
+
+            <label class="calc-checkbox-label">
+              <input type="checkbox" class="quote-addon-checkbox" value="1999" data-addon="UPI Shagun QR & Gift Registry (₹1,999)">
+              <span>UPI Shagun QR (+₹1,999)</span>
             </label>
 
             <label class="calc-checkbox-label">
@@ -3664,9 +4260,10 @@ function updateQuoteCalculator() {
   // Update WhatsApp pre-filled button
   const waBtn = document.getElementById('calc-whatsapp-btn');
   if (waBtn) {
-    const addonsText = selectedAddons.length > 0 
-      ? selectedAddons.map(a => '  • ' + a).join('\n') 
-      : '  • Core package features only';
+    const isCelebration = tierName.includes('Wedding') || tierName.includes('Birthday') || tierName.includes('Memory');
+    const intentLine = isCelebration 
+      ? 'I want to discuss this wedding / celebration memory portal, event itinerary, RSVP, and timeline with you!'
+      : 'I want to discuss this project structure, timeline, and get started for my business!';
 
     const msg = `Namaste Deepak ji 🙏
 
@@ -3678,7 +4275,7 @@ ${addonsText}
 
 💰 *Estimated Total:* ${formattedTotal}
 
-I want to discuss this project structure, timeline, and get started for my business!`;
+${intentLine}`;
 
     waBtn.href = `https://wa.me/916204643184?text=${encodeURIComponent(msg)}`;
   }

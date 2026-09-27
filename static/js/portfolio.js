@@ -277,9 +277,10 @@ function updateQuoteCalculator() {
   // Update WhatsApp pre-filled button
   const waBtn = document.getElementById('calc-whatsapp-btn');
   if (waBtn) {
-    const addonsText = selectedAddons.length > 0 
-      ? selectedAddons.map(a => '  • ' + a).join('\n') 
-      : '  • Core package features only';
+    const isCelebration = tierName.includes('Wedding') || tierName.includes('Birthday') || tierName.includes('Memory');
+    const intentLine = isCelebration 
+      ? 'I want to discuss this wedding / celebration memory portal, event itinerary, RSVP, and timeline with you!'
+      : 'I want to discuss this project structure, timeline, and get started for my business!';
 
     const msg = `Namaste Deepak ji 🙏
 
@@ -291,7 +292,7 @@ ${addonsText}
 
 💰 *Estimated Total:* ${formattedTotal}
 
-I want to discuss this project structure, timeline, and get started for my business!`;
+${intentLine}`;
 
     waBtn.href = `https://wa.me/916204643184?text=${encodeURIComponent(msg)}`;
   }
